@@ -48,24 +48,24 @@ const AppBar = ({ scrollToFooter }) => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-8 text-white">
-          <Link to="/" className="hover:text-blue-500 transition">
+          <Link to="/" className="hover:text-green-500 transition">
             Home
           </Link>
-          <Link to="/code-generator" className="hover:text-blue-500 transition">
+          <Link to="/code-generator" className="hover:text-green-500 transition">
             Code Generator
           </Link>
-          <Link to="/code-styles" className="hover:text-blue-500 transition">
+          <Link to="/code-styles" className="hover:text-green-500 transition">
             Add Styles
           </Link>
-          <Link to="/code-explain" className="hover:text-blue-500 transition">
+          <Link to="/code-explain" className="hover:text-green-500 transition">
             Code Explainer 
           </Link>
-          <Link to="/code-debug" className="hover:text-blue-500 transition">
+          <Link to="/code-debug" className="hover:text-green-500 transition">
             Code Debugger 
           </Link>
           <button
             onClick={scrollToFooter}
-            className="hover:text-blue-500 transition"
+            className="hover:text-green-500 transition"
           >
             About
           </button>
@@ -81,24 +81,53 @@ const AppBar = ({ scrollToFooter }) => {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <nav className="bg-gray-100 md:hidden flex flex-col items-center space-y-4 pb-4 pt-2 text-gray-700 border-t border-gray-200">
-          <Link to="/" className="hover:text-blue-500 transition" onClick={toggleMobileMenu}>
-            Home
-          </Link>
-          <Link to="/essay-generator" className="hover:text-blue-500 transition" onClick={toggleMobileMenu}>
-            Essay Generator
-          </Link>
-          <button
-            onClick={() => {
-              scrollToFooter();
-              toggleMobileMenu();
-            }}
-            className="hover:text-blue-500 transition"
-          >
-            About
-          </button>
-        </nav>
+{isMobileMenuOpen && (
+  <nav className="bg-gray-900 md:hidden flex flex-col items-center space-y-4 pb-4 pt-2 text-gray-700 border-t border-gray-200">
+    <Link
+      to="/"
+      className="text-green-500 transition"
+      onClick={toggleMobileMenu} // Close the menu on click
+    >
+      Home
+    </Link>
+    <Link
+      to="/code-generator"
+      className="text-green-500 transition"
+      onClick={toggleMobileMenu} // Close the menu on click
+    >
+      Code Generator
+    </Link>
+    <Link
+      to="/code-styles"
+      className="text-green-500 transition"
+      onClick={toggleMobileMenu} // Close the menu on click
+    >
+      Add Styles
+    </Link>
+    <Link
+      to="/code-explain"
+      className="text-green-500 transition"
+      onClick={toggleMobileMenu} // Close the menu on click
+    >
+      Code Explainer
+    </Link>
+    <Link
+      to="/code-debug"
+      className="text-green-500 transition"
+      onClick={toggleMobileMenu} // Close the menu on click
+    >
+      Code Debugger
+    </Link>
+    <button
+      onClick={() => {
+        scrollToFooter();
+        toggleMobileMenu(); // Close the menu after scrolling
+      }}
+      className="text-green-500 transition"
+    >
+      About
+    </button>
+     </nav>
       )}
     </header>
   );

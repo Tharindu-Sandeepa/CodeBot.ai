@@ -11,7 +11,7 @@ const CodeExplain = () => {
   const formatText = (rawText) => {
     let formattedText = rawText.replace(/\n/g, "<br />");
     formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
-    formattedText = formattedText.replace(/\*(.*?)\*/g, "");
+    formattedText = formattedText.replace(/\*(.*?)\*/g, "<i>$1</i>");
     return formattedText;
   };
 
@@ -38,36 +38,36 @@ const CodeExplain = () => {
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col items-center justify-center p-6 font-poppins text-white">
       {/* Title */}
-      <h1 className="text-3xl font-bold text-blue-400 mb-8">Code Explain</h1>
+      <h1 className="text-4xl font-bold text-blue-400 mb-10">Code Explain</h1>
 
       {/* Content Container */}
-      <div className="flex flex-col md:flex-row w-full max-w-6xl space-y-8 md:space-y-0 md:space-x-10">
+      <div className="flex flex-col md:flex-row w-full max-w-7xl space-y-8 md:space-y-0 md:space-x-12">
         {/* Input Section */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
             getExplain();
           }}
-          className="relative bg-gray-800 p-6 rounded-lg shadow-lg w-full md:w-1/2"
+          className="relative bg-gray-800 p-8 rounded-xl shadow-lg w-full md:w-2/5 lg:w-1/2"
         >
           <h2 className="text-2xl font-semibold text-gray-300 mb-4">Input Code</h2>
           <p className="text-gray-400 mb-6">Paste your code here to get an explanation.</p>
 
           <CodeMirror
             value={code}
-            height="200px"
+            height="300px"
             extensions={[javascript()]}
             theme="dark"
             onChange={(value) => setCode(value)}
-            className="rounded-lg shadow-inner"
+            className="rounded-lg shadow-inner border border-gray-600"
           />
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <button
-              className={`px-6 py-3 font-medium rounded-lg transition focus:ring focus:ring-blue-500 ${
+              className={`px-8 py-3 font-medium rounded-lg transition focus:ring focus:ring-blue-500 shadow-lg text-white text-lg ${
                 isGenerating
                   ? "bg-gray-500 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-600"
+                  : "bg-green-500 hover:bg-green-600"
               }`}
               type="submit"
               disabled={isGenerating}
@@ -75,7 +75,7 @@ const CodeExplain = () => {
               {isGenerating ? (
                 <span className="flex items-center gap-2">
                   <svg
-                    className="animate-spin h-5 w-5 text-white"
+                    className="animate-spin h-6 w-6 text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -104,20 +104,20 @@ const CodeExplain = () => {
         </form>
 
         {/* Output Section */}
-        <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-full md:w-1/2">
+        <div className="bg-gray-800 p-8 rounded-xl shadow-lg w-full md:w-3/5 lg:w-1/2">
           <h2 className="text-2xl font-semibold text-gray-300 mb-4">Code Explanation</h2>
           <div
-            className={`bg-gray-900 p-4 rounded-lg shadow-md overflow-y-auto ${
-              text ? "max-h-96" : "h-48 flex items-center justify-center"
+            className={`bg-gray-900 p-6 rounded-lg shadow-md overflow-y-auto text-left ${
+              text ? "max-h-[500px]" : "h-64 flex items-center justify-center"
             }`}
           >
             {text ? (
               <div
-                className="text-gray-200 text-base leading-relaxed"
+                className="text-gray-200 text-lg leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: text }}
               ></div>
             ) : (
-              <p className="text-gray-400">Your explanation will appear here...</p>
+              <p className="text-gray-400 text-center">Your explanation will appear here...</p>
             )}
           </div>
         </div>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import BigButton from '../components/BigButton.js';
 import { AnimatedBackground } from 'animated-backgrounds';
-import zIndex from '@mui/material/styles/zIndex.js';
 import AiButton from '../components/ai-button.tsx';
 
 const HomePage = () => {

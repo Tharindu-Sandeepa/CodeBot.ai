@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FaCopy } from "react-icons/fa";
 import { AnimatedBackground } from "animated-backgrounds";
 import { generateCode } from "../ai/AI.js"; // Assuming a code-generating API
-import hljs from "highlight.js";
 import "highlight.js/styles/monokai.css";
 import { useLocation } from "react-router-dom"; // To get inputCode from navigation
 import CodeMirror from '@uiw/react-codemirror';
@@ -27,9 +26,7 @@ const CodeStyles = () => {
   const [font, setFont] = useState("Poppins");
   const [borderRadius, setBorderRadius] = useState("4");
   const [styledCode, setStyledCode] = useState("");
-  const [editorContent, setEditorContent] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [codeForCopy, setCodeForCopy] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -11,11 +11,10 @@ const Footer = React.forwardRef((props, ref) => {
           <div className="max-w-md text-center md:text-left">
          
             <span className="text-2xl font-bold text-white">
-            About Ai<span className="text-blue-500">Pen</span>
+            Code<span className="text-green-500">Bot</span>
           </span>
             <p className="text-gray-300">
-            The AiPen is a web app that quickly generates high-quality essays based on user-provided topics. It offers customization options and allows users to download or copy the generated content, making it a time-saving tool for students and professionals
-            </p>
+            CodeBot is an AI-powered tool designed to help developers and learners understand code effortlessly. By pasting code into the editor, users can generate detailed, step-by-step explanations powered by advanced AI technology. Perfect for debugging, learning, and exploring code functionality, CodeBot simplifies even the most complex programming concepts in seconds.            </p>
           </div>
 
          

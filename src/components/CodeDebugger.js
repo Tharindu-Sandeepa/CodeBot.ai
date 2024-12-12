@@ -72,7 +72,7 @@ const CodeDebugger = () => {
           <button
             onClick={handleDebugCode}
             className={`mt-6 text-white px-4 py-2 rounded-md transition ${
-              isDebugging ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+              isDebugging ? 'bg-gray-500 cursor-not-allowed' : ' bg-green-500 hover:bg-green-600'
             }`}
             disabled={isDebugging}
           >

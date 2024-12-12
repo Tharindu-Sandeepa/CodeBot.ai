@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import { AnimatedBackground } from 'animated-backgrounds';
 import { generateCode } from '../ai/AI.js';
@@ -15,6 +15,7 @@ const CodeGenerator = () => {
   const [fileName, setFileName] = useState('');
   const [languageSuggestions, setLanguageSuggestions] = useState([]);
   const navigate = useNavigate();
+  const [selectedSuggestion, setSelectedSuggestion] = useState(-1); // Tracks the currently highlighted suggestion
 
   const languagesList = [
     'JavaScript',
@@ -121,24 +122,52 @@ const CodeGenerator = () => {
         >
           <h2 className="text-xl font-semibold text-gray-300 mb-4">Code Generator</h2>
 
-          <div className="mt-6">
-            <label className="block text-gray-300 font-medium mb-1 text-left">
-              Programming Language, Framework, or Library
-            </label>
-            <input
-              type="text"
-              value={language}
-              onChange={handleLanguageChange}
-              placeholder="Type or select a language"
-              className="w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white"
-              list="language-options"
-            />
-            <datalist id="language-options">
-              {languageSuggestions.map((lang) => (
-                <option key={lang} value={lang} />
-              ))}
-            </datalist>
-          </div>
+          <div className="mt-6 relative">
+  <label className="block text-gray-300 font-medium mb-1 text-left">
+    Programming Language, Framework, or Library
+  </label>
+  <input
+    type="text"
+    value={language}
+    onChange={handleLanguageChange}
+    placeholder="Type or select a language"
+    className="w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white"
+    onKeyDown={(e) => {
+      if (e.key === "ArrowDown") {
+        setSelectedSuggestion((prev) => Math.min(prev + 1, languageSuggestions.length - 1));
+      } else if (e.key === "ArrowUp") {
+        setSelectedSuggestion((prev) => Math.max(prev - 1, 0));
+      } else if (e.key === "Enter" && selectedSuggestion >= 0) {
+        setLanguage(languageSuggestions[selectedSuggestion]);
+        setLanguageSuggestions([]);
+        setSelectedSuggestion(-1);
+      }
+    }}
+    onFocus={() => {
+      if (language) setLanguageSuggestions(languagesList);
+    }}
+    onBlur={() => setTimeout(() => setLanguageSuggestions([]), 100)}
+  />
+  {languageSuggestions.length > 0 && (
+    <ul className="absolute left-0 right-0 bg-gray-800 border border-gray-700 mt-1 rounded-md z-10 max-h-40 overflow-y-auto">
+      {languageSuggestions.map((lang, index) => (
+        <li
+          key={lang}
+          className={`p-2 text-gray-300 hover:bg-gray-700 cursor-pointer ${
+            index === selectedSuggestion ? "bg-gray-700" : ""
+          }`}
+          onMouseDown={() => {
+            setLanguage(lang);
+            setLanguageSuggestions([]);
+          }}
+          onMouseEnter={() => setSelectedSuggestion(index)}
+        >
+          {lang}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
 
           <div className="mt-6">
             <label className="block text-gray-300 font-medium mb-1 text-left">File Name</label>
@@ -246,4 +275,4 @@ const CodeGenerator = () => {
   );
 };
 
-export default CodeGenerator;
+export default CodeGenerator;    
