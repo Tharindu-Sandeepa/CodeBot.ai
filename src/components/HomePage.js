@@ -34,7 +34,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center font-popins justify-center p-6 relative text-gray-100 bg-black-100">
-      <AnimatedBackground animationName="starryNight"  style={{ opacity: 0.6 , zIndex: 0  }} />
+      <AnimatedBackground animationName="starryNight"  style={{ opacity: 0.4 , zIndex: 0  }} />
 
       {/* Header Section */}
       <header className="text-center max-w-3xl mx-auto mb-4"  style={{ zIndex: 1  }}>
